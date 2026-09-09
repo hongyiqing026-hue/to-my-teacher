@@ -4,20 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>教师节 · 致亲爱的郑老师</title>
+<title>教师节 · 致亲爱的刘老师</title>
 
 <style>
-
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-html,body{
-    margin:0;
+html,
+body{
+    width:100%;
     min-height:100%;
 }
 
 body{
+    overflow-x:hidden;
     font-family:
         "Noto Serif SC",
         "Songti SC",
@@ -25,1204 +28,843 @@ body{
         "SimSun",
         serif;
 
-    color:#684f49;
-
     background:
-        radial-gradient(
-            circle at 50% 25%,
-            rgba(255,255,255,.96),
-            rgba(255,247,238,.82) 45%,
-            rgba(246,225,211,.98) 100%
-        );
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.85), transparent 28%),
+        radial-gradient(circle at 80% 10%, rgba(255,220,230,.55), transparent 30%),
+        radial-gradient(circle at 50% 90%, rgba(255,240,220,.8), transparent 35%),
+        linear-gradient(135deg,#fff8f2,#ffeef3,#fff7ed);
 
-    overflow-x:hidden;
+    color:#633f42;
+    position:relative;
+    min-height:100vh;
 }
 
+/* =========================
+   背景装饰
+========================= */
 
-/* =====================================
+.bg-stars{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:1;
+}
+
+.star{
+    position:absolute;
+    color:#e6b6c0;
+    font-size:18px;
+    animation:
+        twinkle 2.8s ease-in-out infinite,
+        floatStar 6s ease-in-out infinite;
+    opacity:.65;
+}
+
+.star:nth-child(1){left:8%;top:12%;animation-delay:.2s;}
+.star:nth-child(2){left:18%;top:72%;font-size:13px;animation-delay:1s;}
+.star:nth-child(3){left:82%;top:17%;font-size:14px;animation-delay:.6s;}
+.star:nth-child(4){left:91%;top:64%;font-size:20px;animation-delay:1.4s;}
+.star:nth-child(5){left:6%;top:42%;font-size:11px;animation-delay:2s;}
+.star:nth-child(6){left:75%;top:78%;font-size:12px;animation-delay:1.2s;}
+.star:nth-child(7){left:47%;top:7%;font-size:12px;animation-delay:1.7s;}
+.star:nth-child(8){left:61%;top:87%;font-size:16px;animation-delay:.8s;}
+
+@keyframes twinkle{
+    0%,100%{
+        opacity:.25;
+        transform:scale(.8);
+    }
+    50%{
+        opacity:1;
+        transform:scale(1.25);
+    }
+}
+
+@keyframes floatStar{
+    0%,100%{
+        margin-top:0;
+    }
+    50%{
+        margin-top:-10px;
+    }
+}
+
+/* =========================
+   猫咪贴纸
+========================= */
+
+.cat-sticker{
+    position:fixed;
+    z-index:4;
+    pointer-events:none;
+    user-select:none;
+    filter:drop-shadow(0 5px 5px rgba(130,80,90,.12));
+}
+
+.cat-left{
+    left:13px;
+    bottom:38px;
+    font-size:54px;
+    transform:rotate(-8deg);
+    animation:catFloat 4s ease-in-out infinite;
+}
+
+.cat-right{
+    right:13px;
+    top:92px;
+    font-size:48px;
+    transform:rotate(8deg);
+    animation:catFloat2 4.5s ease-in-out infinite;
+}
+
+@keyframes catFloat{
+    0%,100%{transform:rotate(-8deg) translateY(0);}
+    50%{transform:rotate(-5deg) translateY(-8px);}
+}
+
+@keyframes catFloat2{
+    0%,100%{transform:rotate(8deg) translateY(0);}
+    50%{transform:rotate(5deg) translateY(-7px);}
+}
+
+/* =========================
    飘落花瓣
-===================================== */
+========================= */
 
 .petal-container{
     position:fixed;
-
     inset:0;
-
-    width:100%;
-    height:100%;
-
-    pointer-events:none;
-
     overflow:hidden;
-
-    z-index:1;
+    pointer-events:none;
+    z-index:2;
 }
 
 .petal{
     position:absolute;
-
     top:-40px;
-
-    width:14px;
-    height:10px;
-
-    background:rgba(224,157,139,.38);
-
-    border-radius:
-        100% 0 100% 0;
-
-    transform:rotate(35deg);
-
+    width:13px;
+    height:18px;
+    background:rgba(245,170,185,.68);
+    border-radius:70% 30% 70% 30%;
+    transform:rotate(30deg);
     animation:
         fall linear infinite,
-        sway ease-in-out infinite;
-
-    filter:blur(.1px);
+        sway ease-in-out infinite alternate;
 }
-
 
 @keyframes fall{
-
-    0%{
-        top:-40px;
-        opacity:0;
+    from{
+        transform:translateY(-40px) rotate(0deg);
     }
-
-    8%{
-        opacity:.75;
-    }
-
-    85%{
-        opacity:.6;
-    }
-
-    100%{
-        top:110vh;
-        opacity:0;
+    to{
+        transform:translateY(110vh) rotate(360deg);
     }
 }
-
 
 @keyframes sway{
-
-    0%{
-        margin-left:0;
+    from{
+        margin-left:-30px;
     }
-
-    25%{
-        margin-left:35px;
-    }
-
-    50%{
-        margin-left:-25px;
-    }
-
-    75%{
+    to{
         margin-left:30px;
-    }
-
-    100%{
-        margin-left:0;
     }
 }
 
-
-/* =====================================
-   页面
-===================================== */
+/* =========================
+   页面主体
+========================= */
 
 .page{
-    position:relative;
-
-    z-index:5;
-
-    width:min(100%,760px);
-
+    width:100%;
     min-height:100vh;
-
-    margin:0 auto;
-
-    padding:
-        58px
-        24px
-        80px;
-
+    padding:65px 18px 40px;
+    position:relative;
+    z-index:3;
     text-align:center;
 }
 
-
 .title{
-    margin:0;
-
     font-size:30px;
-
-    font-weight:500;
-
-    letter-spacing:3px;
+    font-weight:600;
+    letter-spacing:4px;
+    color:#70464b;
+    margin-bottom:12px;
+    text-shadow:0 2px 5px rgba(120,70,80,.08);
 }
-
 
 .subtitle{
-
-    margin-top:12px;
-
-    font-family:Arial,sans-serif;
-
-    font-size:12px;
-
-    letter-spacing:6px;
-
-    color:#a58b82;
+    font-size:13px;
+    color:#a7777e;
+    letter-spacing:2px;
 }
 
-
-/* =====================================
-   音乐按钮
-===================================== */
-
-.music-btn{
-
-    margin-top:18px;
-
-    padding:
-        8px
-        18px;
-
-    border:
-        1px solid
-        rgba(166,111,94,.25);
-
-    border-radius:20px;
-
-    background:
-        rgba(255,250,245,.72);
-
-    color:#9b756a;
-
-    font-family:
-        "Noto Serif SC",
-        "Songti SC",
-        serif;
-
-    font-size:12px;
-
-    letter-spacing:1px;
-
-    cursor:pointer;
-
-    transition:
-        background .3s ease,
-        transform .2s ease,
-        box-shadow .3s ease;
-}
-
-
-.music-btn:active{
-
-    transform:scale(.96);
-}
-
-
-.music-btn.playing{
-
-    background:
-        rgba(226,160,140,.18);
-
-    box-shadow:
-        0 4px 15px
-        rgba(160,100,80,.12);
-}
-
-
-/* =====================================
-   信封场景
-===================================== */
+/* =========================
+   场景
+========================= */
 
 .scene{
-
-    position:relative;
-
-    width:min(100%,620px);
-
+    width:620px;
+    max-width:100%;
     height:700px;
-
-    margin:
-        210px
-        auto
-        0;
+    margin:210px auto 0;
+    position:relative;
 }
 
-
-/* =====================================
+/* =========================
    信纸
-===================================== */
+========================= */
 
 .letter{
-
     position:absolute;
+    width:410px;
+    max-width:88%;
+    height:570px;
 
-    left:6%;
+    left:50%;
+    bottom:160px;
 
-    top:25px;
-
-    width:88%;
-
-    min-height:500px;
-
-    padding:
-        42px
-        36px
-        38px;
-
-    text-align:left;
+    transform:
+        translateX(-50%)
+        translateY(270px);
 
     background:
         linear-gradient(
-            rgba(255,253,247,.98),
-            rgba(255,251,243,.98)
+            rgba(255,255,255,.96),
+            rgba(255,249,244,.97)
         );
 
-    border:
-        1px solid
-        rgba(160,125,110,.13);
-
-    border-radius:4px;
+    border-radius:8px;
 
     box-shadow:
-        0 14px 35px
-        rgba(120,78,61,.12);
+        0 12px 35px rgba(115,65,75,.18),
+        inset 0 0 0 1px rgba(190,130,140,.12);
+
+    padding:45px 38px;
 
     opacity:0;
-
-    visibility:hidden;
-
-    transform:
-        translateY(270px);
-
-    z-index:1;
+    z-index:2;
 
     transition:
-        transform 1.05s cubic-bezier(.2,.8,.2,1),
-        opacity .3s ease,
-        visibility 0s linear 1.05s;
+        transform 1s cubic-bezier(.2,.8,.2,1),
+        opacity .7s ease;
 }
 
-
-/* 信纸内框 */
-
-.letter:before{
-
+.letter::before{
     content:"";
-
     position:absolute;
+    inset:12px;
+    border:1px dashed rgba(198,145,153,.25);
+    border-radius:5px;
+    pointer-events:none;
+}
 
-    inset:10px;
+.letter.opened{
+    opacity:1;
+    transform:
+        translateX(-50%)
+        translateY(-455px);
+}
 
-    border:
-        1px solid
-        rgba(191,146,126,.14);
+/* 信纸装饰星星 */
+
+.letter-star{
+    position:absolute;
+    color:#e3aeb9;
+    font-size:16px;
+}
+
+.letter-star.one{
+    top:23px;
+    left:25px;
+}
+
+.letter-star.two{
+    top:25px;
+    right:28px;
+}
+
+.letter-star.three{
+    bottom:25px;
+    left:28px;
+}
+
+.letter-star.four{
+    bottom:22px;
+    right:27px;
+}
+
+/* =========================
+   信件内容
+========================= */
+
+.letter-content{
+    position:relative;
+    z-index:2;
+    text-align:left;
+    height:100%;
+    overflow-y:auto;
+    scrollbar-width:none;
+}
+
+.letter-content::-webkit-scrollbar{
+    display:none;
+}
+
+.letter h2{
+    text-align:center;
+    font-size:23px;
+    font-weight:600;
+    margin-bottom:28px;
+    color:#71464d;
+}
+
+.letter p{
+    font-size:15px;
+    line-height:2.15;
+    margin-bottom:17px;
+    color:#68484b;
+    letter-spacing:.5px;
+}
+
+.letter .ending{
+    text-align:right;
+    margin-top:25px;
+}
+
+/* =========================
+   信封
+========================= */
+
+.envelope{
+    position:absolute;
+    width:480px;
+    max-width:90%;
+    height:330px;
+
+    left:50%;
+    bottom:0;
+
+    transform:translateX(-50%);
+
+    z-index:4;
+
+    transition:
+        transform .6s ease,
+        box-shadow .6s ease;
+}
+
+.envelope-body{
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(135deg,#f5d3d7,#f8e0d7);
+
+    border-radius:10px;
+
+    box-shadow:
+        0 18px 45px rgba(100,55,65,.18);
+
+    overflow:hidden;
+}
+
+/* 信封下折 */
+
+.bottom-fold{
+    position:absolute;
+    left:0;
+    bottom:0;
+
+    width:100%;
+    height:190px;
+
+    background:
+        linear-gradient(
+            145deg,
+            transparent 49.5%,
+            rgba(218,165,174,.48) 50%,
+            transparent 50.5%
+        ),
+        linear-gradient(
+            215deg,
+            transparent 49.5%,
+            rgba(218,165,174,.48) 50%,
+            transparent 50.5%
+        );
 
     pointer-events:none;
 }
 
-
-/* 打开后的信纸 */
-
-.letter.opened{
-
-    visibility:visible;
-
-    opacity:1;
-
-    transform:
-        translateY(-455px);
-
-    z-index:50;
-
-    transition:
-        transform 1.05s cubic-bezier(.2,.8,.2,1),
-        opacity .3s ease;
-}
-
-
-/* 信纸标题 */
-
-.letter-title{
-
-    text-align:center;
-
-    font-size:18px;
-
-    letter-spacing:4px;
-
-    color:#96766c;
-
-    margin:
-        0
-        0
-        26px;
-}
-
-
-/* 正文 */
-
-.letter-body{
-
-    font-size:18px;
-
-    line-height:2.05;
-
-    letter-spacing:1px;
-}
-
-
-.letter-body p{
-
-    margin:
-        0
-        0
-        25px;
-}
-
-
-.letter-body p:last-child{
-
-    margin-bottom:0;
-}
-
-
-/* =====================================
-   信封
-===================================== */
-
-.envelope{
-
-    position:absolute;
-
-    left:0;
-
-    bottom:0;
-
-    width:100%;
-
-    height:330px;
-
-    z-index:20;
-
-    cursor:pointer;
-
-    -webkit-tap-highlight-color:transparent;
-
-    filter:
-        drop-shadow(
-            0 18px 22px
-            rgba(130,77,61,.15)
-        );
-}
-
-
-/* 信封主体 */
-
-.envelope-body{
-
-    position:absolute;
-
-    left:0;
-
-    bottom:0;
-
-    width:100%;
-
-    height:290px;
-
-    background:#dc9279;
-
-    border-radius:2px;
-
-    overflow:hidden;
-
-    z-index:22;
-}
-
-
-/* 左侧折痕 */
-
-.envelope-body:before{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-
-    top:0;
-
-    width:0;
-
-    height:0;
-
-    border-style:solid;
-
-    border-width:
-        290px
-        310px
-        0
-        0;
-
-    border-color:
-        #e4a088
-        transparent
-        transparent
-        transparent;
-}
-
-
-/* 右侧折痕 */
-
-.envelope-body:after{
-
-    content:"";
-
-    position:absolute;
-
-    right:0;
-
-    top:0;
-
-    width:0;
-
-    height:0;
-
-    border-style:solid;
-
-    border-width:
-        290px
-        0
-        0
-        310px;
-
-    border-color:
-        #d98b73
-        transparent
-        transparent
-        transparent;
-}
-
-
-/* 下方折纸 */
-
-.bottom-fold{
-
-    position:absolute;
-
-    left:0;
-
-    right:0;
-
-    bottom:0;
-
-    height:205px;
-
-    z-index:24;
-
-    background:#e09a80;
-
-    clip-path:
-        polygon(
-            0 100%,
-            50% 0,
-            100% 100%
-        );
-}
-
-
-/* =====================================
+/* =========================
    信封文字
-===================================== */
+========================= */
 
 .envelope-message{
-
     position:absolute;
-
-    left:50%;
-
-    top:105px;
-
-    transform:
-        translateX(-50%);
-
-    width:80%;
-
-    z-index:30;
-
-    color:#fff8f3;
-
-    font-size:21px;
-
-    line-height:1.65;
-
-    letter-spacing:2px;
+    width:100%;
+    top:115px;
+    left:0;
 
     text-align:center;
 
-    text-shadow:
-        0 1px 2px
-        rgba(112,64,52,.12);
+    font-size:20px;
+    letter-spacing:2px;
+    color:#75474d;
+
+    z-index:4;
 
     transition:
-        opacity .3s ease,
-        transform .3s ease;
+        opacity .45s ease,
+        transform .45s ease;
 }
 
+.envelope-message::before{
+    content:"✦";
+    display:block;
+    font-size:16px;
+    margin-bottom:8px;
+    color:#d79da9;
+}
 
-/* =====================================
-   信封盖
-===================================== */
+.envelope.open .envelope-message{
+    opacity:0;
+    transform:translateY(15px);
+}
+
+/* =========================
+   信封上盖
+========================= */
 
 .flap{
-
     position:absolute;
-
     left:0;
-
     top:0;
 
     width:100%;
+    height:180px;
 
-    height:185px;
-
-    z-index:40;
-
-    background:#e8a48d;
-
-    clip-path:
-        polygon(
-            0 0,
-            100% 0,
-            50% 100%
+    background:
+        linear-gradient(
+            145deg,
+            #f8dfe2,
+            #f3cbd1
         );
 
-    transform-origin:50% 0;
+    clip-path:polygon(
+        0 0,
+        100% 0,
+        50% 100%
+    );
 
-    transform:
-        rotateX(0deg);
+    transform-origin:top center;
 
     transition:
-        transform .85s
-        cubic-bezier(.2,.75,.2,1);
+        transform .75s cubic-bezier(.4,0,.2,1);
 
-    backface-visibility:hidden;
+    z-index:6;
 }
 
+.envelope.open .flap{
+    transform:rotateX(180deg);
+}
 
-/* =====================================
+/* =========================
    印章
-===================================== */
+========================= */
 
 .seal{
-
     position:absolute;
 
     left:50%;
+    top:125px;
 
-    top:115px;
+    transform:translateX(-50%);
 
-    transform:
-        translateX(-50%);
-
-    width:66px;
-
-    height:66px;
+    width:58px;
+    height:58px;
 
     border-radius:50%;
 
-    display:grid;
+    background:
+        radial-gradient(
+            circle,
+            #e5a8b3 0 55%,
+            #d68f9c 56% 100%
+        );
 
-    place-items:center;
+    color:white;
 
-    background:#b6534c;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    color:#fff8f2;
-
-    font-size:31px;
-
-    z-index:45;
+    font-size:19px;
 
     box-shadow:
-        0 5px 12px
-        rgba(105,54,48,.22);
+        0 4px 10px rgba(120,60,70,.18);
+
+    z-index:8;
 
     transition:
-        opacity .3s ease,
+        opacity .4s ease,
         transform .4s ease;
 }
 
-
-/* =====================================
-   打开状态
-===================================== */
-
-.envelope.open .flap{
-
-    transform:
-        rotateX(180deg);
-}
-
-
-.envelope.open .envelope-message{
-
-    opacity:0;
-
-    transform:
-        translateX(-50%)
-        translateY(8px);
-}
-
-
 .envelope.open .seal{
-
     opacity:0;
-
     transform:
         translateX(-50%)
-        scale(.65);
+        scale(.6);
 }
 
+/* =========================
+   小装饰
+========================= */
 
-/* =====================================
-   点击提示
-===================================== */
+.envelope-deco{
+    position:absolute;
+    color:#d79da7;
+    z-index:5;
+    font-size:17px;
+}
+
+.envelope-deco.left{
+    left:28px;
+    bottom:30px;
+}
+
+.envelope-deco.right{
+    right:28px;
+    bottom:30px;
+}
+
+/* =========================
+   提示文字
+========================= */
 
 .hint{
-
     position:absolute;
+    width:100%;
+    bottom:-48px;
+    left:0;
 
-    left:50%;
+    font-size:13px;
+    color:#a8787f;
+    letter-spacing:1px;
 
-    bottom:-42px;
-
-    transform:
-        translateX(-50%);
-
-    color:#a98277;
-
-    font-size:14px;
-
-    letter-spacing:2px;
-
-    transition:
-        opacity .3s ease;
+    transition:opacity .5s ease;
 }
 
-
 .scene.open .hint{
-
     opacity:0;
 }
 
-
-/* =====================================
-   重新关闭按钮
-===================================== */
+/* =========================
+   关闭按钮
+========================= */
 
 .close{
+    position:fixed;
+    left:50%;
+    bottom:25px;
 
-    display:none;
+    transform:translateX(-50%);
 
-    margin:
-        20px
-        auto
-        0;
+    padding:9px 22px;
 
-    border:
-        1px solid
-        rgba(166,111,94,.3);
-
-    background:
-        rgba(255,250,245,.75);
-
-    color:#8d675d;
-
+    border:none;
     border-radius:20px;
 
-    padding:
-        8px
-        18px;
+    background:rgba(255,255,255,.75);
 
+    color:#8c5c63;
+
+    font-family:inherit;
     font-size:13px;
+
+    box-shadow:
+        0 5px 18px rgba(100,60,70,.12);
+
+    display:none;
+    z-index:20;
+
+    backdrop-filter:blur(8px);
 }
 
-
 .close.show{
-
     display:block;
 }
 
-
-/* =====================================
-   手机端
-===================================== */
+/* =========================
+   手机适配
+========================= */
 
 @media(max-width:600px){
 
     .page{
-
-        padding:
-            34px
-            18px
-            70px;
+        padding-top:55px;
     }
-
 
     .title{
-
         font-size:25px;
-
-        letter-spacing:2px;
+        letter-spacing:3px;
     }
-
 
     .subtitle{
-
-        font-size:10px;
-
-        letter-spacing:5px;
+        font-size:12px;
     }
-
 
     .scene{
-
-        width:100%;
-
-        height:690px;
-
-        margin-top:220px;
+        height:620px;
+        margin-top:170px;
     }
-
-
-    /* 手机信纸 */
-
-    .letter{
-
-        left:4%;
-
-        width:92%;
-
-        min-height:500px;
-
-        padding:
-            35px
-            25px
-            32px;
-
-        transform:
-            translateY(260px);
-    }
-
-
-    .letter.opened{
-
-        transform:
-            translateY(-435px);
-    }
-
-
-    .letter-title{
-
-        font-size:16px;
-
-        letter-spacing:3px;
-
-        margin-bottom:22px;
-    }
-
-
-    .letter-body{
-
-        font-size:17px;
-
-        line-height:2.02;
-
-        letter-spacing:.5px;
-    }
-
-
-    .letter-body p{
-
-        margin-bottom:22px;
-    }
-
-
-    /* 手机信封 */
 
     .envelope{
-
-        height:315px;
-    }
-
-
-    .envelope-body{
-
         height:275px;
     }
 
-
-    .envelope-body:before{
-
-        border-width:
-            275px
-            50vw
-            0
-            0;
-    }
-
-
-    .envelope-body:after{
-
-        border-width:
-            275px
-            0
-            0
-            50vw;
-    }
-
-
-    .bottom-fold{
-
-        height:195px;
-    }
-
-
     .flap{
-
-        height:175px;
+        height:150px;
     }
-
-
-    .envelope-message{
-
-        top:98px;
-
-        font-size:18px;
-
-        line-height:1.65;
-    }
-
 
     .seal{
-
-        top:108px;
-
-        width:62px;
-
-        height:62px;
-
-        font-size:28px;
+        top:105px;
+        width:52px;
+        height:52px;
+        font-size:17px;
     }
 
-
-    .hint{
-
-        bottom:-40px;
-
-        font-size:13px;
+    .envelope-message{
+        top:92px;
+        font-size:16px;
+        padding:0 15px;
     }
-
-
-    .petal{
-
-        width:11px;
-
-        height:8px;
-    }
-}
-
-
-/* =====================================
-   小屏手机
-===================================== */
-
-@media(max-width:390px){
 
     .letter{
-
-        padding-left:21px;
-
-        padding-right:21px;
+        height:520px;
+        padding:35px 27px;
+        bottom:130px;
     }
-
-
-    .letter-body{
-
-        font-size:16px;
-    }
-
 
     .letter.opened{
-
         transform:
-            translateY(-425px);
+            translateX(-50%)
+            translateY(-395px);
+    }
+
+    .letter h2{
+        font-size:21px;
+        margin-bottom:23px;
+    }
+
+    .letter p{
+        font-size:14px;
+        line-height:2;
+        margin-bottom:14px;
+    }
+
+    .cat-left{
+        left:5px;
+        bottom:75px;
+        font-size:42px;
+    }
+
+    .cat-right{
+        right:5px;
+        top:100px;
+        font-size:38px;
+    }
+
+    .hint{
+        bottom:-40px;
+        font-size:12px;
     }
 }
 
+@media(max-height:700px){
+
+    .scene{
+        margin-top:130px;
+    }
+
+    .page{
+        padding-top:40px;
+    }
+}
 </style>
 </head>
 
-
 <body>
 
+<!-- =========================
+     背景星星
+========================= -->
 
-<!-- =====================================
-     花瓣
-===================================== -->
-
-<div
-    class="petal-container"
-    id="petals">
+<div class="bg-stars">
+    <div class="star">✦</div>
+    <div class="star">✧</div>
+    <div class="star">✦</div>
+    <div class="star">✧</div>
+    <div class="star">⋆</div>
+    <div class="star">✦</div>
+    <div class="star">✧</div>
+    <div class="star">⋆</div>
 </div>
 
+<!-- =========================
+     猫咪贴纸
+========================= -->
 
+<div class="cat-sticker cat-left">🐱</div>
+<div class="cat-sticker cat-right">🐈</div>
 
-<main class="page">
+<!-- =========================
+     花瓣
+========================= -->
 
+<div class="petal-container" id="petals"></div>
 
-    <!-- 标题 -->
+<!-- =========================
+     页面
+========================= -->
 
-    <h1 class="title">
-        教师节 · 致亲爱的郑老师
-    </h1>
+<div class="page">
 
-
-    <div class="subtitle">
-        THANK YOU, TEACHER
+    <div class="title">
+        致亲爱的刘老师
     </div>
 
+    <div class="subtitle">
+        一封来自学生的小小心意
+    </div>
 
-    <!-- 音乐按钮 -->
+    <div class="scene" id="scene">
 
-    <button
-        class="music-btn"
-        id="musicBtn">
-
-        ♫ 轻音乐 · 点击开启
-
-    </button>
-
-
-
-    <!-- =================================
-         信封区域
-    ================================== -->
-
-    <section
-        class="scene"
-        id="scene">
-
-
-        <!-- =============================
+        <!-- =========================
              信纸
-        ============================== -->
+        ========================= -->
 
-        <article
-            class="letter"
-            id="letter">
+        <div class="letter" id="letter">
 
+            <span class="letter-star one">✦</span>
+            <span class="letter-star two">✧</span>
+            <span class="letter-star three">⋆</span>
+            <span class="letter-star four">✦</span>
 
-            <div class="letter-title">
+            <div class="letter-content">
 
-                亲爱的老师
+                <h2>亲爱的刘老师</h2>
+
+                <p>
+                    老师好，教师节快乐啊
+                </p>
+
+                <p>
+                    感谢您一直以来的的教导，虽然我听的不咋认真，但我真切被您的责任心与真诚感染，所以笔译课我会好好听讲的（我尽力）
+                </p>
+
+                <p>
+                    祝您身体健康，万事如意，教师节快乐！
+                </p>
+
+                <p class="ending">
+                    —— 您的学生
+                </p>
 
             </div>
+        </div>
 
 
-
-            <div class="letter-body">
-
-
-                <p>
-                    老师，教师节快乐呀!!
-                </p>
-
-
-                <p>
-                    上学期见不到您我们真的很想念您，还好大四又能上您的课了，我会好好听讲的😊
-                </p>
-
-
-                <p>
-                    您无疑是我最喜欢的老师，当然我们许多人都会这么想的嘻嘻嘻
-                </p>
-
-
-                <p>
-                    您以后有什么任务可以尽情吩咐我，我很开心能帮助到您❤️
-                </p>
-
-
-                <p>
-                    愿您身体安康，平安幸福，教师节快乐！
-                </p>
-
-
-            </div>
-
-        </article>
-
-
-
-        <!-- =============================
+        <!-- =========================
              信封
-        ============================== -->
+        ========================= -->
 
-        <div
-            class="envelope"
-            id="envelope"
-            role="button"
-            aria-label="点击打开信封">
-
+        <div class="envelope" id="envelope">
 
             <div class="envelope-body">
 
+                <div class="bottom-fold"></div>
 
-                <div class="bottom-fold">
+                <div class="envelope-deco left">
+                    ✦
                 </div>
 
+                <div class="envelope-deco right">
+                    ✧
+                </div>
 
                 <div class="envelope-message">
-
-                    教师节快乐！<br>
-
-                    祝您桃李满天下<br>
-
-                    家庭事业顶呱呱
-
+                    教師の日おめでとうございます！ 🌸
                 </div>
 
-
             </div>
 
-
-
-            <div class="flap">
-            </div>
-
-
+            <div class="flap"></div>
 
             <div class="seal">
-
-                ✿
-
+                祝
             </div>
 
-
         </div>
-
 
 
         <div class="hint">
-
-            点击信封，打开这封信
-
+            点击信封，打开这份小小的心意
         </div>
 
+    </div>
 
-    </section>
-
-
-
-    <!-- 关闭按钮 -->
-
-    <button
-        class="close"
-        id="closeBtn">
-
-        重新合上信封
-
-    </button>
+</div>
 
 
-</main>
+<!-- =========================
+     关闭按钮
+========================= -->
 
+<button class="close" id="closeBtn">
+    收起信件
+</button>
 
 
 <script>
 
-/* =====================================
-   创建花瓣
-===================================== */
+/* ==================================================
+   1. 创建花瓣
+================================================== */
 
 const petalContainer =
     document.getElementById("petals");
 
-
-const petalCount = 18;
-
-
-for(
-    let i = 0;
-    i < petalCount;
-    i++
-){
+for(let i = 0; i < 18; i++){
 
     const petal =
-        document.createElement("span");
+        document.createElement("div");
 
-
-    petal.className =
-        "petal";
-
-
-    /* 随机位置 */
+    petal.className = "petal";
 
     petal.style.left =
         Math.random() * 100 + "%";
 
-
-    /* 随机大小 */
-
-    const scale =
-        0.65 +
-        Math.random() * 0.75;
-
-
-    petal.style.transform =
-        `rotate(${Math.random()*360}deg) scale(${scale})`;
-
-
-    /* 随机速度 */
-
-    const fallTime =
-        8 +
-        Math.random() * 9;
-
-
     petal.style.animationDuration =
-        `${fallTime}s, ${3 + Math.random()*3}s`;
-
-
-    /* 随机延迟 */
+        (7 + Math.random() * 7) + "s";
 
     petal.style.animationDelay =
-        `${-Math.random()*12}s, ${-Math.random()*3}s`;
-
-
-    /* 随机透明度 */
+        (-Math.random() * 10) + "s";
 
     petal.style.opacity =
-        0.35 +
-        Math.random() * 0.4;
+        (0.3 + Math.random() * 0.5);
 
+    petal.style.transform =
+        `scale(${0.6 + Math.random() * 0.7})`;
 
-    petalContainer.appendChild(
-        petal
-    );
+    petalContainer.appendChild(petal);
 }
 
 
-
-/* =====================================
-   获取元素
-===================================== */
+/* ==================================================
+   2. 获取元素
+================================================== */
 
 const envelope =
     document.getElementById("envelope");
@@ -1236,406 +878,373 @@ const scene =
 const closeBtn =
     document.getElementById("closeBtn");
 
-const musicBtn =
-    document.getElementById("musicBtn");
+
+/* ==================================================
+   3. 信封打开
+================================================== */
+
+let opened = false;
+
+envelope.addEventListener("click", function(){
+
+    if(opened) return;
+
+    opened = true;
+
+    envelope.classList.add("open");
+    scene.classList.add("open");
+
+    /*
+       延迟一点，让信封翻盖先打开，
+       然后信纸再向上出现
+    */
+
+    setTimeout(function(){
+
+        letter.classList.add("opened");
+
+    },450);
 
 
+    setTimeout(function(){
 
-/* =====================================
-   信封打开
-===================================== */
+        closeBtn.classList.add("show");
 
-envelope.addEventListener(
-    "click",
-    function(){
+    },1500);
 
-        if(
-            scene.classList.contains("open")
-        ){
-
-            return;
-
-        }
+});
 
 
-        scene.classList.add("open");
+/* ==================================================
+   4. 关闭信件
+================================================== */
 
-        envelope.classList.add("open");
+closeBtn.addEventListener("click", function(e){
 
+    e.stopPropagation();
 
-        /*
-           先打开信封盖，
-           再让信纸升起来
-        */
+    letter.classList.remove("opened");
 
-        setTimeout(
-            function(){
+    setTimeout(function(){
 
-                letter.classList.add(
-                    "opened"
-                );
+        envelope.classList.remove("open");
+        scene.classList.remove("open");
 
-            },
-            450
-        );
+        opened = false;
 
+        closeBtn.classList.remove("show");
 
-        setTimeout(
-            function(){
+    },500);
 
-                closeBtn.classList.add(
-                    "show"
-                );
-
-            },
-            1500
-        );
+});
 
 
-        /*
-           第一次点击信封时，
-           自动开始音乐
-        */
+/* ==================================================
+   5. 背景音乐
+      使用 Web Audio API
+      不需要上传 MP3
+================================================== */
 
-        if(!musicPlaying){
-
-            startMusic();
-
-        }
-
-    }
-);
-
-
-
-/* =====================================
-   重新合上
-===================================== */
-
-closeBtn.addEventListener(
-    "click",
-    function(){
-
-        closeBtn.classList.remove(
-            "show"
-        );
-
-
-        /*
-           先收回信纸
-        */
-
-        letter.classList.remove(
-            "opened"
-        );
-
-
-        setTimeout(
-            function(){
-
-                envelope.classList.remove(
-                    "open"
-                );
-
-                scene.classList.remove(
-                    "open"
-                );
-
-            },
-            650
-        );
-
-    }
-);
-
-
-
-/* =====================================
-   原创舒缓音乐
-===================================== */
-
-let audioContext =
-    null;
-
-let musicPlaying =
-    false;
-
-let musicTimer =
-    null;
-
-let musicStep =
-    0;
+let audioContext = null;
+let musicTimer = null;
+let musicStarted = false;
 
 
 /*
-   C大调原创旋律
+   简单温柔的旋律
+
+   数字越大音调越高
+   0 = 停顿
 */
 
 const melody = [
 
-    523.25,
-    659.25,
-    783.99,
-    659.25,
+    523.25,659.25,783.99,659.25,
+    587.33,523.25,440.00,0,
 
-    587.33,
-    698.46,
-    880.00,
-    698.46,
+    523.25,659.25,783.99,880.00,
+    783.99,659.25,587.33,0,
 
-    523.25,
-    659.25,
-    783.99,
-    987.77,
+    523.25,587.33,659.25,783.99,
+    659.25,587.33,523.25,0,
 
-    880.00,
-    783.99,
-    659.25,
-    523.25,
-
-    440.00,
-    523.25,
-    659.25,
-    783.99,
-
-    698.46,
-    659.25,
-    523.25,
-    440.00
+    440.00,523.25,587.33,659.25,
+    587.33,523.25,440.00,0
 
 ];
 
 
+/* ==================================================
+   播放一个音符
+================================================== */
 
-/* =====================================
-   播放单音
-===================================== */
+function playNote(freq, duration){
 
-function playNote(
-    frequency,
-    duration
-){
-
-    if(!audioContext){
-
+    if(!audioContext || freq === 0){
         return;
-
     }
-
-
-    const now =
-        audioContext.currentTime;
-
 
     const oscillator =
         audioContext.createOscillator();
 
-
     const gain =
         audioContext.createGain();
 
+    oscillator.type = "sine";
+
+    oscillator.frequency.value =
+        freq;
 
     /*
-       正弦波让声音比较柔和
+       柔和淡入淡出
     */
 
-    oscillator.type =
-        "sine";
-
-
-    oscillator.frequency.setValueAtTime(
-        frequency,
-        now
-    );
-
-
-    /*
-       淡入
-    */
+    const now =
+        audioContext.currentTime;
 
     gain.gain.setValueAtTime(
         0,
         now
     );
 
-
     gain.gain.linearRampToValueAtTime(
-        0.055,
-        now + 0.08
+        0.045,
+        now + 0.03
     );
-
-
-    /*
-       淡出
-    */
 
     gain.gain.exponentialRampToValueAtTime(
         0.001,
         now + duration
     );
 
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
 
-    oscillator.connect(
-        gain
-    );
-
-
-    gain.connect(
-        audioContext.destination
-    );
-
-
-    oscillator.start(
-        now
-    );
-
+    oscillator.start(now);
 
     oscillator.stop(
-        now + duration
+        now + duration + 0.05
     );
-
 }
 
 
-
-/* =====================================
+/* ==================================================
    播放旋律
-===================================== */
+================================================== */
 
 function playMelody(){
 
-    if(!musicPlaying){
+    if(!audioContext) return;
 
-        return;
+    let index = 0;
 
-    }
+    function next(){
 
+        if(!musicStarted) return;
 
-    const note =
-        melody[musicStep];
+        const freq =
+            melody[index];
 
-
-    playNote(
-        note,
-        1.8
-    );
-
-
-    musicStep =
-        (
-            musicStep + 1
-        )
-        %
-        melody.length;
-
-
-    musicTimer =
-        setTimeout(
-            playMelody,
-            1600
+        playNote(
+            freq,
+            freq === 0 ? 0.25 : 0.42
         );
 
+        index =
+            (index + 1) % melody.length;
+
+        musicTimer =
+            setTimeout(next,420);
+    }
+
+    next();
 }
 
 
-
-/* =====================================
+/* ==================================================
    开始音乐
-===================================== */
+================================================== */
 
 function startMusic(){
 
-    if(!audioContext){
-
-        audioContext =
-            new (
-                window.AudioContext ||
-                window.webkitAudioContext
-            )();
-
+    if(musicStarted){
+        return;
     }
 
+    try{
 
-    if(
-        audioContext.state ===
-        "suspended"
-    ){
+        if(!audioContext){
 
-        audioContext.resume();
+            audioContext =
+                new (
+                    window.AudioContext ||
+                    window.webkitAudioContext
+                )();
+
+        }
+
+        /*
+           如果 AudioContext 处于 suspended，
+           resume 会在用户交互后恢复
+        */
+
+        const resumePromise =
+            audioContext.resume();
+
+        if(resumePromise &&
+           typeof resumePromise.then === "function"){
+
+            resumePromise.then(function(){
+
+                if(!musicStarted){
+
+                    musicStarted = true;
+
+                    playMelody();
+
+                }
+
+            }).catch(function(){
+
+                /*
+                   浏览器拒绝时，
+                   等第一次点击页面
+                */
+
+            });
+
+        }else{
+
+            musicStarted = true;
+            playMelody();
+
+        }
+
+    }catch(error){
+
+        console.log(
+            "音乐启动失败：",
+            error
+        );
 
     }
-
-
-    musicPlaying =
-        true;
-
-
-    musicBtn.classList.add(
-        "playing"
-    );
-
-
-    musicBtn.textContent =
-        "♫ 轻音乐 · 播放中";
-
-
-    musicStep =
-        0;
-
-
-    playMelody();
 
 }
 
 
-
-/* =====================================
+/* ==================================================
    停止音乐
-===================================== */
+================================================== */
 
 function stopMusic(){
 
-    musicPlaying =
-        false;
+    musicStarted = false;
 
+    if(musicTimer){
 
-    clearTimeout(
-        musicTimer
-    );
+        clearTimeout(musicTimer);
 
+        musicTimer = null;
 
-    musicBtn.classList.remove(
-        "playing"
-    );
-
-
-    musicBtn.textContent =
-        "♫ 轻音乐 · 点击开启";
+    }
 
 }
 
 
+/* ==================================================
+   6. 页面进入后自动尝试播放
+================================================== */
 
-/* =====================================
-   音乐按钮
-===================================== */
-
-musicBtn.addEventListener(
-    "click",
+window.addEventListener(
+    "load",
     function(){
 
-        if(musicPlaying){
+        /*
+           浏览器允许的话：
+           进入页面立即播放
 
-            stopMusic();
+           浏览器不允许的话：
+           不报错，不弹按钮，
+           等第一次点击页面自动播放
+        */
 
-        }
-        else{
-
-            startMusic();
-
-        }
+        startMusic();
 
     }
+);
+
+
+/* ==================================================
+   7. 如果浏览器禁止自动播放
+      第一次点击任意位置时自动开始
+
+      不需要用户寻找音乐按钮
+================================================== */
+
+function firstInteraction(){
+
+    startMusic();
+
+    document.removeEventListener(
+        "click",
+        firstInteraction
+    );
+
+    document.removeEventListener(
+        "touchstart",
+        firstInteraction
+    );
+
+    document.removeEventListener(
+        "pointerdown",
+        firstInteraction
+    );
+
+}
+
+
+/*
+   微信 / 手机浏览器兼容
+*/
+
+document.addEventListener(
+    "click",
+    firstInteraction,
+    {
+        once:true
+    }
+);
+
+document.addEventListener(
+    "touchstart",
+    firstInteraction,
+    {
+        once:true,
+        passive:true
+    }
+);
+
+document.addEventListener(
+    "pointerdown",
+    firstInteraction,
+    {
+        once:true
+    }
+);
+
+
+/* ==================================================
+   8. 微信环境兼容
+================================================== */
+
+document.addEventListener(
+    "WeixinJSBridgeReady",
+    function(){
+
+        startMusic();
+
+    },
+    false
 );
 
 </script>
