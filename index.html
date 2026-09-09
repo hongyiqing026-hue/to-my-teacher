@@ -214,8 +214,6 @@ body{
         background .3s ease,
         transform .2s ease,
         box-shadow .3s ease;
-
-    display:none;
 }
 
 
@@ -806,4 +804,923 @@ body{
 
     .letter{
 
-        left:4%
+        left:4%;
+
+        width:92%;
+
+        min-height:500px;
+
+        padding:
+            35px
+            25px
+            32px;
+
+        transform:
+            translateY(260px);
+    }
+
+
+    .letter.opened{
+
+        transform:
+            translateY(-435px);
+    }
+
+
+    .letter-title{
+
+        font-size:16px;
+
+        letter-spacing:3px;
+
+        margin-bottom:22px;
+    }
+
+
+    .letter-body{
+
+        font-size:17px;
+
+        line-height:2.02;
+
+        letter-spacing:.5px;
+    }
+
+
+    .letter-body p{
+
+        margin-bottom:22px;
+    }
+
+
+    /* 手机信封 */
+
+    .envelope{
+
+        height:315px;
+    }
+
+
+    .envelope-body{
+
+        height:275px;
+    }
+
+
+    .envelope-body:before{
+
+        border-width:
+            275px
+            50vw
+            0
+            0;
+    }
+
+
+    .envelope-body:after{
+
+        border-width:
+            275px
+            0
+            0
+            50vw;
+    }
+
+
+    .bottom-fold{
+
+        height:195px;
+    }
+
+
+    .flap{
+
+        height:175px;
+    }
+
+
+    .envelope-message{
+
+        top:98px;
+
+        font-size:18px;
+
+        line-height:1.65;
+    }
+
+
+    .seal{
+
+        top:108px;
+
+        width:62px;
+
+        height:62px;
+
+        font-size:28px;
+    }
+
+
+    .hint{
+
+        bottom:-40px;
+
+        font-size:13px;
+    }
+
+
+    .petal{
+
+        width:11px;
+
+        height:8px;
+    }
+}
+
+
+/* =====================================
+   小屏手机
+===================================== */
+
+@media(max-width:390px){
+
+    .letter{
+
+        padding-left:21px;
+
+        padding-right:21px;
+    }
+
+
+    .letter-body{
+
+        font-size:16px;
+    }
+
+
+    .letter.opened{
+
+        transform:
+            translateY(-425px);
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================
+     花瓣
+===================================== -->
+
+<div
+    class="petal-container"
+    id="petals">
+</div>
+
+
+
+<main class="page">
+
+
+    <!-- 标题 -->
+
+    <h1 class="title">
+        教师节 · 致亲爱的郑老师
+    </h1>
+
+
+    <div class="subtitle">
+        THANK YOU, TEACHER
+    </div>
+
+
+    <!-- 音乐按钮 -->
+
+    <button
+        class="music-btn"
+        id="musicBtn">
+
+        ♫ 轻音乐 · 点击开启
+
+    </button>
+
+
+
+    <!-- =================================
+         信封区域
+    ================================== -->
+
+    <section
+        class="scene"
+        id="scene">
+
+
+        <!-- =============================
+             信纸
+        ============================== -->
+
+        <article
+            class="letter"
+            id="letter">
+
+
+            <div class="letter-title">
+
+                亲爱的老师
+
+            </div>
+
+
+
+            <div class="letter-body">
+
+
+                <p>
+                    老师，教师节快乐呀!!
+                </p>
+
+
+                <p>
+                    上学期见不到您我们真的很想念您，还好大四又能上您的课了，我会好好听讲的😊
+                </p>
+
+
+                <p>
+                    您无疑是我最喜欢的老师，当然我们许多人都会这么想的嘻嘻嘻
+                </p>
+
+
+                <p>
+                    您以后有什么任务可以尽情吩咐我，我很开心能帮助到您❤️
+                </p>
+
+
+                <p>
+                    愿您身体安康，平安幸福，教师节快乐！
+                </p>
+
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =============================
+             信封
+        ============================== -->
+
+        <div
+            class="envelope"
+            id="envelope"
+            role="button"
+            aria-label="点击打开信封">
+
+
+            <div class="envelope-body">
+
+
+                <div class="bottom-fold">
+                </div>
+
+
+                <div class="envelope-message">
+
+                    教师节快乐！<br>
+
+                    祝您桃李满天下<br>
+
+                    家庭事业顶呱呱
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="flap">
+            </div>
+
+
+
+            <div class="seal">
+
+                ✿
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="hint">
+
+            点击信封，打开这封信
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- 关闭按钮 -->
+
+    <button
+        class="close"
+        id="closeBtn">
+
+        重新合上信封
+
+    </button>
+
+
+</main>
+
+
+
+<script>
+
+
+/* =====================================
+   创建花瓣
+===================================== */
+
+const petalContainer =
+    document.getElementById("petals");
+
+
+const petalCount = 18;
+
+
+for(
+    let i = 0;
+    i < petalCount;
+    i++
+){
+
+    const petal =
+        document.createElement("span");
+
+
+    petal.className =
+        "petal";
+
+
+    /* 随机位置 */
+
+    petal.style.left =
+        Math.random() * 100 + "%";
+
+
+    /* 随机大小 */
+
+    const scale =
+        0.65 +
+        Math.random() * 0.75;
+
+
+    petal.style.transform =
+        `rotate(${Math.random()*360}deg) scale(${scale})`;
+
+
+    /* 随机速度 */
+
+    const fallTime =
+        8 +
+        Math.random() * 9;
+
+
+    petal.style.animationDuration =
+        `${fallTime}s, ${3 + Math.random()*3}s`;
+
+
+    /* 随机延迟 */
+
+    petal.style.animationDelay =
+        `${-Math.random()*12}s, ${-Math.random()*3}s`;
+
+
+    /* 随机透明度 */
+
+    petal.style.opacity =
+        0.35 +
+        Math.random() * 0.4;
+
+
+    petalContainer.appendChild(
+        petal
+    );
+}
+
+
+
+/* =====================================
+   获取元素
+===================================== */
+
+const envelope =
+    document.getElementById("envelope");
+
+const letter =
+    document.getElementById("letter");
+
+const scene =
+    document.getElementById("scene");
+
+const closeBtn =
+    document.getElementById("closeBtn");
+
+const musicBtn =
+    document.getElementById("musicBtn");
+
+
+
+/* =====================================
+   信封打开
+===================================== */
+
+envelope.addEventListener(
+    "click",
+    function(){
+
+        if(
+            scene.classList.contains("open")
+        ){
+
+            return;
+
+        }
+
+
+        scene.classList.add("open");
+
+        envelope.classList.add("open");
+
+
+        /*
+           先打开信封盖，
+           再让信纸升起来
+        */
+
+        setTimeout(
+            function(){
+
+                letter.classList.add(
+                    "opened"
+                );
+
+            },
+            450
+        );
+
+
+        setTimeout(
+            function(){
+
+                closeBtn.classList.add(
+                    "show"
+                );
+
+            },
+            1500
+        );
+
+
+        /*
+           如果音乐还没有播放，
+           点击信封时自动恢复
+        */
+
+        if(!musicPlaying){
+
+            startMusic();
+
+        }
+
+    }
+);
+
+
+
+/* =====================================
+   重新合上
+===================================== */
+
+closeBtn.addEventListener(
+    "click",
+    function(){
+
+        closeBtn.classList.remove(
+            "show"
+        );
+
+
+        /*
+           先收回信纸
+        */
+
+        letter.classList.remove(
+            "opened"
+        );
+
+
+        setTimeout(
+            function(){
+
+                envelope.classList.remove(
+                    "open"
+                );
+
+                scene.classList.remove(
+                    "open"
+                );
+
+            },
+            650
+        );
+
+    }
+);
+
+
+
+/* =====================================
+   原创舒缓音乐
+===================================== */
+
+let audioContext =
+    null;
+
+let musicPlaying =
+    false;
+
+let musicTimer =
+    null;
+
+let musicStep =
+    0;
+
+
+/*
+   C大调原创旋律
+*/
+
+const melody = [
+
+    523.25,
+    659.25,
+    783.99,
+    659.25,
+
+    587.33,
+    698.46,
+    880.00,
+    698.46,
+
+    523.25,
+    659.25,
+    783.99,
+    987.77,
+
+    880.00,
+    783.99,
+    659.25,
+    523.25,
+
+    440.00,
+    523.25,
+    659.25,
+    783.99,
+
+    698.46,
+    659.25,
+    523.25,
+    440.00
+
+];
+
+
+
+/* =====================================
+   播放单音
+===================================== */
+
+function playNote(
+    frequency,
+    duration
+){
+
+    if(!audioContext){
+
+        return;
+
+    }
+
+
+    const now =
+        audioContext.currentTime;
+
+
+    const oscillator =
+        audioContext.createOscillator();
+
+
+    const gain =
+        audioContext.createGain();
+
+
+    /*
+       正弦波让声音比较柔和
+    */
+
+    oscillator.type =
+        "sine";
+
+
+    oscillator.frequency.setValueAtTime(
+        frequency,
+        now
+    );
+
+
+    /*
+       淡入
+    */
+
+    gain.gain.setValueAtTime(
+        0,
+        now
+    );
+
+
+    gain.gain.linearRampToValueAtTime(
+        0.055,
+        now + 0.08
+    );
+
+
+    /*
+       淡出
+    */
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        now + duration
+    );
+
+
+    oscillator.connect(
+        gain
+    );
+
+
+    gain.connect(
+        audioContext.destination
+    );
+
+
+    oscillator.start(
+        now
+    );
+
+
+    oscillator.stop(
+        now + duration
+    );
+
+}
+
+
+
+/* =====================================
+   播放旋律
+===================================== */
+
+function playMelody(){
+
+    if(!musicPlaying){
+
+        return;
+
+    }
+
+
+    const note =
+        melody[musicStep];
+
+
+    playNote(
+        note,
+        1.8
+    );
+
+
+    musicStep =
+        (
+            musicStep + 1
+        )
+        %
+        melody.length;
+
+
+    musicTimer =
+        setTimeout(
+            playMelody,
+            1600
+        );
+
+}
+
+
+
+/* =====================================
+   开始音乐
+===================================== */
+
+function startMusic(){
+
+    if(!audioContext){
+
+        audioContext =
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
+
+    }
+
+
+    if(
+        audioContext.state ===
+        "suspended"
+    ){
+
+        audioContext.resume();
+
+    }
+
+
+    if(musicPlaying){
+
+        return;
+
+    }
+
+
+    musicPlaying =
+        true;
+
+
+    musicBtn.classList.add(
+        "playing"
+    );
+
+
+    musicBtn.textContent =
+        "♫ 轻音乐 · 播放中";
+
+
+    musicStep =
+        0;
+
+
+    playMelody();
+
+}
+
+
+
+/* =====================================
+   停止音乐
+===================================== */
+
+function stopMusic(){
+
+    musicPlaying =
+        false;
+
+
+    clearTimeout(
+        musicTimer
+    );
+
+
+    musicBtn.classList.remove(
+        "playing"
+    );
+
+
+    musicBtn.textContent =
+        "♫ 轻音乐 · 点击开启";
+
+}
+
+
+
+/* =====================================
+   音乐按钮
+===================================== */
+
+musicBtn.addEventListener(
+    "click",
+    function(){
+
+        if(musicPlaying){
+
+            stopMusic();
+
+        }
+        else{
+
+            startMusic();
+
+        }
+
+    }
+);
+
+
+
+/* =====================================
+   自动播放音乐
+===================================== */
+
+/*
+   页面一进入就尝试播放。
+   
+   注意：
+   手机浏览器、微信等环境可能禁止
+   网页在没有用户操作的情况下播放声音。
+   
+   如果被浏览器拦截，则第一次点击页面
+   任意位置时自动恢复音乐，不需要点击
+   音乐按钮。
+*/
+
+window.addEventListener(
+    "load",
+    function(){
+
+        startMusic();
+
+    }
+);
+
+
+/*
+   如果浏览器阻止了自动播放，
+   用户第一次点击页面时自动恢复。
+*/
+
+function resumeMusicOnInteraction(){
+
+    if(
+        !musicPlaying ||
+        !audioContext
+    ){
+
+        startMusic();
+
+    }
+
+}
+
+
+document.addEventListener(
+    "click",
+    resumeMusicOnInteraction,
+    {
+        once:true
+    }
+);
+
+
+document.addEventListener(
+    "touchstart",
+    resumeMusicOnInteraction,
+    {
+        once:true,
+        passive:true
+    }
+);
+
+
+document.addEventListener(
+    "pointerdown",
+    resumeMusicOnInteraction,
+    {
+        once:true
+    }
+);
+
+</script>
+
+</body>
+</html>
