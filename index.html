@@ -3,15 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>教师节 · 给老师的一封信</title>
 
 <style>
+
+/* =========================
+   基础
+========================= */
+
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     width: 100%;
     height: 100%;
@@ -19,152 +26,257 @@ html, body {
 
 body {
     overflow: hidden;
-    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+
+    font-family:
+        "PingFang SC",
+        "Microsoft YaHei",
+        sans-serif;
+
     background:
-        radial-gradient(circle at 50% 20%, #fffaf3, #f5e9dc 55%, #ead8c8);
+        radial-gradient(
+            circle at 50% 20%,
+            #fffaf3 0%,
+            #f8eee3 50%,
+            #ead8c8 100%
+        );
+
     color: #624b3e;
 }
 
-/* 页面 */
+
+/* =========================
+   页面
+========================= */
+
 .scene {
     width: 100%;
     height: 100vh;
-    min-height: 650px;
+
     position: relative;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     overflow: hidden;
 }
 
-/* 背景装饰 */
+
+/* 背景花朵 */
+
 .scene::before {
     content: "✿";
+
     position: absolute;
-    left: 7%;
-    top: 14%;
+
+    left: 8%;
+    top: 23%;
+
     font-size: 75px;
-    color: rgba(150, 92, 70, 0.08);
+
+    color: rgba(165, 105, 82, 0.08);
+
     transform: rotate(-20deg);
 }
 
 .scene::after {
     content: "✿";
+
     position: absolute;
-    right: 7%;
-    bottom: 14%;
+
+    right: 8%;
+    bottom: 13%;
+
     font-size: 75px;
-    color: rgba(150, 92, 70, 0.08);
+
+    color: rgba(165, 105, 82, 0.08);
+
     transform: rotate(20deg);
 }
 
-/* 标题 */
+
+/* =========================
+   标题
+========================= */
+
 .title {
     position: absolute;
+
     top: 7%;
+
     width: 100%;
+
     text-align: center;
-    z-index: 30;
+
+    z-index: 50;
 }
 
 .title-main {
     font-family: serif;
+
     font-size: 27px;
-    letter-spacing: 5px;
+
+    letter-spacing: 4px;
+
     color: #674a3c;
 }
 
 .title-sub {
-    margin-top: 8px;
+    margin-top: 9px;
+
     font-size: 10px;
+
     letter-spacing: 4px;
+
     color: #a48675;
 }
 
-/* 信封 */
+
+/* =========================
+   信封
+========================= */
+
 .envelope {
+    position: absolute;
+
     width: min(370px, 84vw);
     height: 245px;
-    position: relative;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -35%);
+
     cursor: pointer;
-    perspective: 1200px;
-    margin-top: 90px;
+
+    z-index: 10;
+
+    /*
+       注意：
+       这里不能 overflow:hidden，
+       否则打开以后信纸无法跑到信封上方。
+    */
 }
+
 
 /* =========================
    信纸
-   ========================= */
+========================= */
+
 .letter {
     position: absolute;
 
     width: 90%;
-    height: 350px;
+
+    height: 370px;
 
     left: 5%;
-    top: -20px;
+
+    /*
+       信纸一开始位于信封内部
+    */
+    top: 0;
 
     padding: 28px 25px;
 
     background:
         linear-gradient(
             135deg,
-            rgba(255,255,255,.8),
-            rgba(255,250,240,.9)
+            rgba(255,255,255,.96),
+            rgba(255,251,244,.98)
         );
 
-    border: 1px solid rgba(157, 119, 98, .18);
-    border-radius: 4px;
+    border:
+        1px solid rgba(150,110,90,.18);
+
+    border-radius: 5px;
 
     box-shadow:
-        0 15px 35px rgba(82, 54, 40, .18);
+        0 18px 40px rgba(80,52,40,.18);
+
+    /*
+       初始状态：
+       z-index 很低，
+       并且把信纸上方全部裁掉，
+       所以完全看不到。
+    */
 
     z-index: 2;
 
-    /*
-       未打开时藏在信封里面
-    */
-    transform: translateY(80px);
+    clip-path:
+        inset(245px 0 0 0);
+
+    transform:
+        translateY(0);
 
     transition:
-        transform 1.2s cubic-bezier(.22,.61,.36,1);
+        transform 1.15s cubic-bezier(.22,.61,.36,1),
+        clip-path 0s linear 0.15s;
 
     overflow: hidden;
 }
 
-/* 信纸上的小花 */
+
+/* 信纸装饰 */
+
 .letter::before {
     content: "✿";
+
     position: absolute;
+
     right: 18px;
-    top: 10px;
-    font-size: 18px;
-    color: #b37c68;
-    opacity: .65;
+    top: 12px;
+
+    font-size: 19px;
+
+    color: #b47e69;
+
+    opacity: .6;
 }
+
+
+/* 信纸标题 */
 
 .letter-title {
     text-align: center;
+
     font-family: serif;
+
     font-size: 20px;
+
     letter-spacing: 3px;
-    color: #62473a;
+
+    color: #62483b;
+
     margin-bottom: 18px;
 }
 
+
+/* 信纸正文 */
+
 .letter-content {
     font-family: serif;
-    font-size: 14px;
-    line-height: 1.85;
-    color: #604e45;
+
+    font-size: 15px;
+
+    line-height: 1.9;
+
+    color: #5f4c43;
+
     white-space: pre-wrap;
+
     word-break: break-all;
 }
 
+
 /* =========================
    信封主体
-   ========================= */
+========================= */
+
 .envelope-body {
     position: absolute;
+
     left: 0;
     bottom: 0;
 
@@ -172,19 +284,28 @@ body {
     height: 185px;
 
     background:
-        linear-gradient(135deg, #dba792, #c98c74);
+        linear-gradient(
+            135deg,
+            #dca792,
+            #ca8d75
+        );
 
     border-radius: 8px;
 
     box-shadow:
-        0 18px 35px rgba(82, 54, 40, .22);
+        0 18px 35px rgba(80,52,40,.22);
 
     z-index: 5;
 }
 
-/* 左折角 */
+
+/* =========================
+   左右折角
+========================= */
+
 .fold-left {
     position: absolute;
+
     left: 0;
     bottom: 0;
 
@@ -193,18 +314,19 @@ body {
 
     background: #d29a82;
 
-    clip-path: polygon(
-        0 0,
-        100% 100%,
-        0 100%
-    );
+    clip-path:
+        polygon(
+            0 0,
+            100% 100%,
+            0 100%
+        );
 
     z-index: 7;
 }
 
-/* 右折角 */
 .fold-right {
     position: absolute;
+
     right: 0;
     bottom: 0;
 
@@ -213,47 +335,58 @@ body {
 
     background: #ce957c;
 
-    clip-path: polygon(
-        100% 0,
-        100% 100%,
-        0 100%
-    );
+    clip-path:
+        polygon(
+            100% 0,
+            100% 100%,
+            0 100%
+        );
 
     z-index: 7;
 }
 
+
 /* =========================
    信封上的文字
-   ========================= */
+========================= */
+
 .envelope-message {
     position: absolute;
 
     left: 50%;
-    top: 32px;
+    top: 38px;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
-    width: 82%;
+    width: 90%;
 
     text-align: center;
 
-    color: #fff8f0;
+    color: #fff9f1;
 
     font-family: serif;
+
     font-size: 16px;
+
     line-height: 1.8;
 
     letter-spacing: 1px;
 
-    z-index: 8;
-
     text-shadow:
-        0 1px 2px rgba(100, 55, 40, .18);
+        0 1px 2px rgba(80,45,35,.15);
+
+    z-index: 9;
+
+    transition:
+        opacity .35s ease;
 }
+
 
 /* =========================
    信封上盖
-   ========================= */
+========================= */
+
 .flap {
     position: absolute;
 
@@ -265,13 +398,15 @@ body {
 
     background: #dfad96;
 
-    clip-path: polygon(
-        0 0,
-        100% 0,
-        50% 100%
-    );
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 100%
+        );
 
-    transform-origin: 50% 0%;
+    transform-origin:
+        50% 0%;
 
     transition:
         transform 1s cubic-bezier(.22,.61,.36,1);
@@ -280,13 +415,15 @@ body {
 
     filter:
         drop-shadow(
-            0 3px 4px rgba(82, 54, 40, .12)
+            0 3px 4px rgba(80,50,40,.12)
         );
 }
 
+
 /* =========================
    火漆印
-   ========================= */
+========================= */
+
 .seal {
     position: absolute;
 
@@ -294,9 +431,10 @@ body {
     height: 52px;
 
     left: 50%;
-    top: 103px;
+    top: 105px;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     border-radius: 50%;
 
@@ -310,72 +448,98 @@ body {
     color: #f9e8d7;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     font-size: 22px;
 
     box-shadow:
-        0 4px 9px rgba(73, 40, 34, .25);
+        0 4px 9px rgba(73,40,34,.25);
 
-    z-index: 12;
+    z-index: 15;
 
     transition:
-        opacity .4s ease,
-        transform .5s ease;
+        opacity .35s ease,
+        transform .4s ease;
 }
+
 
 /* =========================
-   打开后的状态
-   ========================= */
+   点击以后
+========================= */
 
-/*
-   信封打开
-*/
+
+/* 信封打开 */
+
 .envelope.open .flap {
-    transform: rotateX(180deg);
+    transform:
+        rotateX(180deg);
 }
 
-/*
-   火漆消失
-*/
+
+/* 信纸完全出现 */
+
+.envelope.open .letter {
+
+    /*
+       取消裁切
+    */
+
+    clip-path:
+        inset(0 0 0 0);
+
+    /*
+       信纸直接升到信封上方
+    */
+
+    transform:
+        translateY(-350px);
+
+    /*
+       非常重要：
+       信纸层级最高，
+       所以信封不会挡住正文。
+    */
+
+    z-index: 30;
+}
+
+
+/* 信封文字消失 */
+
+.envelope.open .envelope-message {
+    opacity: 0;
+}
+
+
+/* 火漆消失 */
+
 .envelope.open .seal {
     opacity: 0;
+
     transform:
         translateX(-50%)
         scale(.7);
 }
 
-/*
-   关键部分：
 
-   信纸打开后直接升到信封上方，
-   并且提高 z-index，
-   因此不会被信封挡住。
-*/
-.envelope.open .letter {
-    transform: translateY(-330px);
-    z-index: 25;
-}
+/* =========================
+   提示
+========================= */
 
-/*
-   信封上的文字在打开后隐藏，
-   避免和信纸重叠。
-*/
-.envelope.open .envelope-message {
-    opacity: 0;
-}
-
-/* 点击提示 */
 .hint {
     position: absolute;
 
-    bottom: 8%;
+    bottom: 7%;
 
     font-size: 13px;
+
     letter-spacing: 2px;
 
     color: #9a7968;
+
+    z-index: 40;
 
     transition:
         opacity .4s ease;
@@ -387,13 +551,10 @@ body {
 
 
 /* =========================
-   手机适配
-   ========================= */
-@media (max-width: 500px) {
+   手机
+========================= */
 
-    .scene {
-        min-height: 600px;
-    }
+@media (max-width: 500px) {
 
     .title {
         top: 6%;
@@ -401,76 +562,143 @@ body {
 
     .title-main {
         font-size: 22px;
+
         letter-spacing: 3px;
     }
 
     .title-sub {
         font-size: 9px;
+
         letter-spacing: 3px;
     }
 
+
     .envelope {
+
         width: 86vw;
+
         height: 225px;
-        margin-top: 80px;
+
+        top: 52%;
+
+        transform:
+            translate(-50%, -35%);
     }
 
+
+    /* 信纸 */
+
+    .letter {
+
+        width: 92%;
+
+        left: 4%;
+
+        height: 365px;
+
+        padding:
+            25px 20px;
+
+        clip-path:
+            inset(225px 0 0 0);
+    }
+
+
+    .letter-title {
+
+        font-size: 19px;
+
+        margin-bottom: 15px;
+    }
+
+
+    .letter-content {
+
+        font-size: 14px;
+
+        line-height: 1.85;
+    }
+
+
+    /* 信封 */
+
     .envelope-body {
+
         height: 170px;
     }
 
     .fold-left,
     .fold-right {
+
         height: 170px;
     }
 
+
     .flap {
+
         height: 138px;
     }
 
-    .seal {
-        top: 93px;
-        width: 48px;
-        height: 48px;
-    }
+
+    /* 信封文字 */
 
     .envelope-message {
+
         top: 28px;
+
         font-size: 14px;
-        line-height: 1.75;
-    }
 
-    .letter {
-        width: 92%;
-        left: 4%;
-        height: 345px;
-        padding: 25px 20px;
-    }
-
-    .letter-title {
-        font-size: 18px;
-        margin-bottom: 14px;
-    }
-
-    .letter-content {
-        font-size: 13px;
         line-height: 1.8;
     }
 
+
+    /* 火漆 */
+
+    .seal {
+
+        top: 94px;
+
+        width: 48px;
+
+        height: 48px;
+
+        font-size: 20px;
+    }
+
+
+    /*
+       手机打开以后，
+       信纸向上移动。
+       
+       这里让信纸完整出现在
+       手机屏幕中间。
+    */
+
     .envelope.open .letter {
-        transform: translateY(-315px);
+
+        transform:
+            translateY(-315px);
+
+        z-index: 30;
     }
 }
+
 </style>
 </head>
 
 
 <body>
 
+
 <div class="scene">
 
-    <!-- 标题 -->
+
+    <!-- =========================
+         标题
+    ========================= -->
+
     <div class="title">
+
         <div class="title-main">
             教师节 · 给老师的一封信
         </div>
@@ -478,21 +706,30 @@ body {
         <div class="title-sub">
             THANK YOU, TEACHER
         </div>
+
     </div>
 
 
-    <!-- 信封 -->
-    <div class="envelope" id="envelope">
+    <!-- =========================
+         信封
+    ========================= -->
+
+    <div
+        class="envelope"
+        id="envelope"
+    >
 
 
         <!-- =========================
              信纸
-             ========================= -->
+        ========================= -->
+
         <div class="letter">
 
             <div class="letter-title">
                 老师，您好
             </div>
+
 
             <div class="letter-content">老师，教师节快乐呀!!
 
@@ -509,54 +746,79 @@ body {
 
         <!-- =========================
              信封主体
-             ========================= -->
+        ========================= -->
+
         <div class="envelope-body"></div>
 
 
-        <!-- 信封上的文字 -->
+        <!-- =========================
+             信封上的文字
+        ========================= -->
+
         <div class="envelope-message">
-            教师节快乐!<br>
-            祝老师桃李满天下<br>
+
+            教师节快乐！<br>
+
+            祝您桃李满天下<br>
+
             家庭事业顶呱呱
+
         </div>
 
 
         <!-- 左右折角 -->
+
         <div class="fold-left"></div>
+
         <div class="fold-right"></div>
 
 
-        <!-- 信封上盖 -->
+        <!-- 上盖 -->
+
         <div class="flap"></div>
 
 
-        <!-- 火漆印 -->
+        <!-- 火漆 -->
+
         <div class="seal">
             ✿
         </div>
+
 
     </div>
 
 
     <!-- 点击提示 -->
+
     <div class="hint">
         点击信封，打开这封信
     </div>
+
 
 </div>
 
 
 <script>
 
-const envelope = document.getElementById("envelope");
+/* =========================
+   点击信封
+========================= */
 
-envelope.addEventListener("click", function () {
+const envelope =
+    document.getElementById("envelope");
 
-    envelope.classList.toggle("open");
 
-});
+envelope.addEventListener(
+    "click",
+    function () {
+
+        envelope.classList.toggle("open");
+
+    }
+);
 
 </script>
+
 
 </body>
 </html>
