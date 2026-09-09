@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>给老师的一封信 ✉️</title>
+    <style>
+        /* === 全局复古暖色调 === */
+        :root {
+            --bg-color: #f7f4ed;        /* 柔和米白 */
+            --envelope-color: #e6dfd3;  /* 信封复古暖色 */
+            --envelope-dark: #d5ccbe;   /* 信封阴影色 */
+            --paper-color: #fffcf7;     /* 质感信纸色 */
+            --text-color: #4a3e3d;      /* 暖褐色文字 */
+            --accent-color: #9e473b;    /* 墨红/火漆印章色 */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            color: var(--text-color);
+        }
+
+        /* 音乐播放按钮 */
+        .music-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #e8e0d5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-size: 18px;
+            user-select: none;
+        }
+
+        .music-btn.playing {
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* === 主容器 === */
+        .container {
+            position: relative;
+            width: 320px;
+            height: 480px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        /* 顶部提示 */
+        .hint-text {
+            position: absolute;
+            top: 25px;
+            font-size: 14px;
+            color: #8c7b75;
+            letter-spacing: 2px;
+            animation: fadeInOut 2s infinite;
+            user-select: none;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* === 信封本体 === */
+        .envelope-wrapper {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background-color: var(--envelope-color);
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 10px 25px rgba(74, 62, 61, 0.15);
+            cursor: pointer;
+        }
+
+        /* 信封盖子（上折角） */
+        .envelope-lid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 110px solid var(--envelope-dark);
+            transform-origin: top;
+            transition: transform 0.6s ease-in-out;
+            z-index: 3;
+        }
+
+        /* 信封口袋 */
+        .envelope-pocket {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid var(--envelope-color);
+            border-right: 150px solid var(--envelope-color);
+            border-bottom: 100px solid var(--envelope-color);
+            border-radius: 0 0 8px 8px;
+            z-index: 2;
+        }
+
+        /* 火漆印章 🌸 */
+        .seal {
+            position: absolute;
+            top: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 46px;
+            height: 46px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 4;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        /* === 信纸 === */
+        .letter {
+            position: absolute;
+            bottom: 10px;
+            width: 270px;
+            height: 380px;
+            background-color: var(--paper-color);
+            border-radius: 6px;
+            padding: 25px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #efe8dc;
+        }
+
+        /* 花纹水文 */
+        .letter::before {
+            content: "✿";
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            color: #d6cbbd;
+        }
+
+        /* 信件内容 */
+        .letter-content {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text-color);
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .letter-title {
+            font-weight: bold;
+            font-size: 17px;
+            margin-bottom: 12px;
+            color: var(--accent-color);
+            min-height: 24px;
+        }
+
+        .letter-footer {
+            text-align: right;
+            font-size: 14px;
+            color: #7a6b67;
+            margin-top: 15px;
+            font-weight: bold;
+            min-height: 20px;
+        }
+
+        /* === 动画拆封触发 === */
+        .container.open .envelope-lid {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+
+        .container.open .seal {
+            opacity: 0;
+            transform: translateX(-50%) scale(0.5);
+        }
+
+        .container.open .letter {
+            transform: translateY(-120px);
+            z-index: 5;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .container.open .hint-text {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 轻柔音乐背景 -->
+    <audio id="bgm" loop src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3"></audio>
+    <div class="music-btn" id="musicBtn" onclick="toggleMusic(event)">🎵</div>
+
+    <div class="container" id="mainContainer" onclick="openLetter()">
+        <div class="hint-text">✉️ 点击拆开给您的信件</div>
+
+        <div class="envelope-wrapper">
+            <div class="envelope-lid"></div>
+            <div class="seal">✿</div>
+            <div class="envelope-pocket"></div>
+            
+            <div class="letter">
+                <div>
+                    <div class="letter-title" id="typeTitle"></div>
+                    <div class="letter-content" id="typeBody"></div>
+                </div>
+                <div class="letter-footer" id="typeFooter"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 祝福文本配置
+        const textData = {
+            title: "亲爱的老师：",
+            body: "教诲如春风，师恩似海深。\n\n感谢您一直以来的包容、鼓励与悉心指引。在那些迷茫的时刻，是您的文字与目光给了我前行的力量。\n\n愿您在四季流转中，工作顺利，生活明朗，平安喜乐！",
+            footer: "教师节快乐！🌸"
+        };
+
+        let isOpen = false;
+
+        function openLetter() {
+            if (isOpen) return;
+            isOpen = true;
+
+            const container = document.getElementById('mainContainer');
+            container.classList.add('open');
+
+            playMusic();
+
+            setTimeout(() => {
+                startTyping();
+            }, 800);
+        }
+
+        function startTyping() {
+            let titleIndex = 0;
+            let bodyIndex = 0;
+
+            const titleEl = document.getElementById('typeTitle');
+            const bodyEl = document.getElementById('typeBody');
+            const footerEl = document.getElementById('typeFooter');
+
+            function typeTitle() {
+                if (titleIndex < textData.title.length) {
+                    titleEl.textContent += textData.title.charAt(titleIndex);
+                    titleIndex++;
+                    setTimeout(typeTitle, 100);
+                } else {
+                    typeBody();
+                }
+            }
+
+            function typeBody() {
+                if (bodyIndex < textData.body.length) {
+                    bodyEl.textContent += textData.body.charAt(bodyIndex);
+                    bodyIndex++;
+                    setTimeout(typeBody, 60);
+                } else {
+                    footerEl.textContent = textData.footer;
+                }
+            }
+
+            typeTitle();
+        }
+
+        const bgm = document.getElementById('bgm');
+        const musicBtn = document.getElementById('musicBtn');
+
+        function playMusic() {
+            bgm.play().then(() => {
+                musicBtn.classList.add('playing');
+            }).catch(() => {});
+        }
+
+        function toggleMusic(e) {
+            e.stopPropagation();
+            if (bgm.paused) {
+                bgm.play();
+                musicBtn.classList.add('playing');
+            } else {
+                bgm.pause();
+                musicBtn.classList.remove('playing');
+            }
+        }
+    </script>
+</body>
+</html>
